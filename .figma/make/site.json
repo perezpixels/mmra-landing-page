@@ -1,0 +1,10 @@
+{
+  "description": "A comprehensive legal research platform for Ghana, MMRA connects statutes, cases, and study resources in one secure workspace for law students and practitioners.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
