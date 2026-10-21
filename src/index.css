@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap");
+@import "./webapp/webapp.css";
 @import "tailwindcss";
 
 :root {
@@ -158,6 +159,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, [tabindex]:focus-vis
 .mini-detail { padding-top: 14px; border-top: 1px solid var(--line); color: var(--gold); font: .65rem "DM Mono"; line-height: 1.5; }
 .section-link { width: fit-content; display: flex; align-items: center; gap: 10px; margin-top: 32px; color: var(--gold); font-size: .8rem; border-bottom: 1px solid var(--gold-deep); padding-bottom: 6px; }
 .section-link svg { width: 16px; }
+.source-backed-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 12px; margin-top: 12px; }
+.source-backed-grid article { min-height: 260px; padding: 28px; background: #111; border: 1px solid var(--line); border-radius: 16px; }
+.source-backed-head { display: flex; align-items: center; gap: 9px; color: var(--gold); font: .63rem "DM Mono"; letter-spacing: .06em; text-transform: uppercase; }
+.source-backed-head svg { width: 18px; }
+.source-backed-grid h3 { margin: 28px 0 10px; font-size: 1.45rem; }
+.source-backed-grid p { font-size: .77rem; }
+.source-backed-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0; }
+.source-backed-list span, .source-backed-contact span { padding: 6px 8px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; font-size: .57rem; }
+.source-backed-contact { display: flex; flex-wrap: wrap; gap: 6px; margin: 20px 0; }
+.source-backed-grid small { display: block; color: #777064; font-size: .58rem; line-height: 1.5; }
 
 .study-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; align-items: center; }
 .study-grid .section-heading { margin-bottom: 32px; }
@@ -371,6 +382,7 @@ footer { padding: 80px 0 28px; background: #070707; }
   .persona-panel, .study-grid, .courts-grid, .ask-grid, .faq-grid { grid-template-columns: 1fr; }
   .trail { grid-template-columns: 1fr 35px 1fr 35px 1fr; }
   .bento { grid-template-columns: repeat(2,1fr); }
+  .source-backed-grid { grid-template-columns: 1fr; }
   .study-grid { gap: 55px; }
   .exam-flow { grid-template-columns: 1fr; gap: 10px; }
   .flow-arrow { rotate: 90deg; margin: auto; }
@@ -420,6 +432,7 @@ footer { padding: 80px 0 28px; background: #070707; }
   .trail-lines.right { gap: 0; }
   .bento { display: flex; overflow-x: auto; margin-right: -16px; padding-right: 16px; scroll-snap-type: x mandatory; }
   .bento-card, .bento-card.wide { min-width: 82vw; min-height: 330px; scroll-snap-align: start; }
+  .source-backed-grid article { min-height: auto; }
   .dashboard-preview { padding: 15px; overflow: hidden; }
   .preview-head { align-items: flex-start; }
   .preview-head > div { align-items: flex-start; flex-direction: column; }

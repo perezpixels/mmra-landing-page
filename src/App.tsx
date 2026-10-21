@@ -27,6 +27,7 @@ import {
   Users,
   X,
 } from "lucide-react";
+import { accreditedInstitutions, chambers } from "./webapp/data";
 
 const navItems = ["Library", "Study", "Courts & Judges", "Ask MMRA", "Pricing", "Blog"];
 const libraryItems = ["Acts and Bills", "Instruments", "Case Bank", "Past Questions", "Resources", "Law Firms"];
@@ -146,7 +147,7 @@ function AppNav() {
   }, []);
 
   return <>
-    <div className="announcement">Free for your first 3 months. No card needed. <a href="#final-cta">Start free <ArrowRight size={14} /></a></div>
+    <div className="announcement">Free for your first 3 months. No card needed. <a href={withBase("/app/onboarding")}>Start free <ArrowRight size={14} /></a></div>
     <header className={`nav-wrap ${scrolled ? "is-scrolled" : ""}`}>
       <nav className="nav container" aria-label="Primary navigation">
         <a className="brand" href="#" aria-label="MMRA home">
@@ -165,11 +166,11 @@ function AppNav() {
           ) : <a href={`#${item.toLowerCase().replaceAll(" ", "-").replace("&", "and")}`} key={item}>{item}</a>)}
         </div>
         <div className="nav-actions">
-          <Button variant="ghost" href="#footer">Log in</Button>
-          <Button href="#final-cta">Start free</Button>
+          <Button variant="ghost" href={withBase("/app/auth?mode=signin")}>Log in</Button>
+          <Button href={withBase("/app/onboarding")}>Start free</Button>
         </div>
         <div className="mobile-actions">
-          <a href="#final-cta" className="mobile-cta">Start free</a>
+          <a href={withBase("/app/onboarding")} className="mobile-cta">Start free</a>
           <button className="icon-button" onClick={() => setMobileOpen(true)} aria-label="Open menu"><Menu /></button>
         </div>
       </nav>
@@ -230,7 +231,7 @@ function Hero() {
           <Eyebrow>Built for Ghanaian law</Eyebrow>
           <h1>Ghana&apos;s law. Courts. Judges. <em>Study path.</em> One place.</h1>
           <p>Search statutes and cases, find the right court and judge, and study with a plan that tracks every case you read. Made for law students, pupils and practitioners.</p>
-          <div className="hero-actions"><Button href="#final-cta">Start free for 3 months <ArrowRight size={18} /></Button><Button variant="secondary" href="#pricing">See pricing</Button></div>
+          <div className="hero-actions"><Button href={withBase("/app/onboarding")}>Start free for 3 months <ArrowRight size={18} /></Button><Button variant="secondary" href="#pricing">See pricing</Button></div>
           <div className="no-card"><ShieldCheck size={15} /> No card needed. Pay later by MoMo or card.</div>
         </div>
         <SearchDemo />
@@ -296,6 +297,22 @@ function LibrarySection() {
     <div className="container">
       <SectionHeading eyebrow="The library" title="Every source of Ghanaian law, organised the way you think." />
       <div className="bento">{libraryCards.map(({icon: Icon, title, copy, detail, wide}) => <article className={`bento-card ${wide ? "wide" : ""}`} key={title}><div className="card-icon"><Icon /></div><span className="number-label">0{libraryCards.findIndex(x => x.title === title)+1}</span><h3>{title}</h3><p>{copy}</p><div className="mini-detail">{detail}</div></article>)}</div>
+      <div className="source-backed-grid">
+        <article>
+          <div className="source-backed-head"><GraduationCap /><span>Supplied legal-education report</span></div>
+          <h3>LLB and Pre-Bar institutions</h3>
+          <p>{accreditedInstitutions.length} faculties are listed in the supplied research report as the interim position stated at October 2026.</p>
+          <div className="source-backed-list">{accreditedInstitutions.slice(0, 6).map((institution) => <span key={institution.name}>{institution.name}</span>)}</div>
+          <small>Verify current accreditation directly with the GLC and GTEC before relying on this list.</small>
+        </article>
+        <article>
+          <div className="source-backed-head"><Users /><span>Supplied chambers register</span></div>
+          <h3>{chambers[0].name}</h3>
+          <p>{chambers[0].physicalAddress}</p>
+          <div className="source-backed-contact"><span>{chambers[0].phone}</span><span>{chambers[0].email}</span></div>
+          <small>The supplied spreadsheet contains one complete chambers record and does not establish an exhaustive directory.</small>
+        </article>
+      </div>
       <a className="section-link" href="#top">Explore the full library <ArrowRight /></a>
     </div>
   </section>;
@@ -414,9 +431,9 @@ function Pricing() {
       <SectionHeading eyebrow="Pricing" title="Start free. Stay for the way it works." copy="One library, every core feature. Choose how you pay after your free period." />
       <div className="pricing-toggle"><button className={!yearly ? "active" : ""} onClick={() => setYearly(false)}>Monthly</button><button className={yearly ? "active" : ""} onClick={() => setYearly(true)}>Yearly <span>Best value</span></button></div>
       <div className="pricing-cards">
-        <article className="pricing-card"><small>FREE</small><h3>3 months.</h3><div className="price">GH₵ 0</div><p>Full access to try MMRA. No card needed.</p><Button variant="secondary" href="#final-cta">Start free</Button></article>
-        <article className="pricing-card"><small>{yearly ? "YEARLY EQUIVALENT" : "MONTHLY"}</small><h3>Monthly.</h3><div className="price">GH₵ [X] <span>/ month</span></div><p>Flexible. Cancel any time.</p><Button variant="secondary" href="#final-cta">Choose Monthly</Button></article>
-        <article className="pricing-card featured"><span className="best">BEST VALUE</span><small>YEARLY</small><h3>Yearly.</h3><div className="price">GH₵ [X] <span>/ year</span></div><p>Save [X]%. One payment, full access.</p><Button href="#final-cta">Choose Yearly</Button></article>
+        <article className="pricing-card"><small>FREE</small><h3>3 months.</h3><div className="price">GH₵ 0</div><p>Full access to try MMRA. No card needed.</p><Button variant="secondary" href={withBase("/app/onboarding")}>Start free</Button></article>
+        <article className="pricing-card"><small>{yearly ? "YEARLY EQUIVALENT" : "MONTHLY"}</small><h3>Monthly.</h3><div className="price">GH₵ [X] <span>/ month</span></div><p>Flexible. Cancel any time.</p><Button variant="secondary" href={withBase("/app/account")}>Choose Monthly</Button></article>
+        <article className="pricing-card featured"><span className="best">BEST VALUE</span><small>YEARLY</small><h3>Yearly.</h3><div className="price">GH₵ [X] <span>/ year</span></div><p>Save [X]%. One payment, full access.</p><Button href={withBase("/app/account")}>Choose Yearly</Button></article>
       </div>
       <div className="payments"><span>Pay with</span>{["MTN MoMo","Telecel Cash","AT Money","Visa","Mastercard"].map(x => <i key={x}>{x}</i>)}</div>
       <div className="included"><strong>Every plan includes</strong>{["Library","Case Bank","Past Questions","Courts and Judges","Ask MMRA","Study dashboard","Notes and folders"].map(x => <span key={x}><Check />{x}</span>)}</div>
@@ -432,7 +449,11 @@ function FAQ() {
 
 function FinalCta() {
   const [sent, setSent] = useState(false);
-  const submit = (e: FormEvent) => { e.preventDefault(); setSent(true); };
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    window.setTimeout(() => { window.location.href = "/app/onboarding"; }, 450);
+  };
   return <section className="final-cta" id="final-cta"><div className="pattern" /><div className="final-glow" /><div className="container"><Eyebrow>Three months free</Eyebrow><h2>Your next case starts here.</h2><p>Join MMRA free for 3 months.</p><form onSubmit={submit}>{sent ? <div className="success-message"><Check /> You&apos;re on the list. We&apos;ll be in touch.</div> : <><label className="sr-only" htmlFor="email">Email address</label><div className="email-input"><Mail /><input id="email" type="email" required placeholder="Your email address" /><Button type="submit">Start free <ArrowRight /></Button></div></>}<small>No card needed.</small></form></div></section>;
 }
 
@@ -478,6 +499,6 @@ export default function App() {
     <FAQ />
     <FinalCta />
     <Footer />
-    <a className={`mobile-sticky ${showMobileCta ? "show" : ""}`} href="#final-cta">Start free for 3 months <ArrowRight /></a>
+    <a className={`mobile-sticky ${showMobileCta ? "show" : ""}`} href={withBase("/app/onboarding")}>Start free for 3 months <ArrowRight /></a>
   </div>;
 }
