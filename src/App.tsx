@@ -28,6 +28,7 @@ import {
   X,
 } from "lucide-react";
 import { accreditedInstitutions, chambers } from "./webapp/data";
+import { withBase } from "./app/basePath";
 
 const navItems = ["Library", "Study", "Courts & Judges", "Ask MMRA", "Pricing", "Blog"];
 const libraryItems = ["Acts and Bills", "Instruments", "Case Bank", "Past Questions", "Resources", "Law Firms"];
