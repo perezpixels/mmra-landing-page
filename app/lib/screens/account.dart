@@ -267,12 +267,46 @@ class _AccountPageState extends State<AccountPage> {
       );
     }
 
+    final signOut = Hover(
+      onTap: () => openLanding(context),
+      builder: (context, hovered) {
+        final color = hovered ? C.red : C.muted;
+        return Semantics(
+          button: true,
+          label: 'Sign out',
+          child: Container(
+            constraints: const BoxConstraints(minHeight: 44),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisSize: bp.le768 ? MainAxisSize.min : MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Sign out', style: sans(.64, color: color)),
+                Icon(LucideIcons.logOut, size: 13, color: color),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
     final aside = Container(
       padding: const EdgeInsets.all(9),
       decoration: BoxDecoration(color: C.paper, border: Border.all(color: C.line), borderRadius: BorderRadius.circular(10)),
       child: bp.le768
-          ? SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [for (final t in _tabs) tabButton(t)]))
-          : Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [for (final t in _tabs) tabButton(t)]),
+          ? SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(children: [
+                for (final t in _tabs) tabButton(t),
+                Container(width: 1, height: 24, margin: const EdgeInsets.symmetric(horizontal: 6), color: C.line),
+                signOut,
+              ]),
+            )
+          : Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              for (final t in _tabs) tabButton(t),
+              Container(height: 1, margin: const EdgeInsets.symmetric(vertical: 6), color: C.line),
+              signOut,
+            ]),
     );
 
     final section = Panel(
