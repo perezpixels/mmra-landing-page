@@ -152,7 +152,7 @@ function AppNav() {
     <header className={`nav-wrap ${scrolled ? "is-scrolled" : ""}`}>
       <nav className="nav container" aria-label="Primary navigation">
         <a className="brand" href="#" aria-label="MMRA home">
-          <span className="brand-mark"><img src="/mmra-logo.png" alt="" /></span>
+          <span className="brand-mark"><img src={withBase("/mmra-logo.png")} alt="" /></span>
           <span>MMRA</span>
         </a>
         <div className="nav-links">
@@ -466,7 +466,7 @@ function Footer() {
     ["Company","About","Contact","Careers","Blog"],
     ["Legal","Terms","Privacy","Data protection","Content and takedown"],
   ];
-  return <footer id="footer"><div className="container"><div className="footer-top"><div className="footer-brand"><a className="brand" href="#"><span className="brand-mark"><img src="/mmra-logo.png" alt="" /></span><span>MMRA</span></a><p>Ghana&apos;s law, courts, judges and study path, in one protected workspace.</p><div className="contact"><span>[email]</span><span>[phone]</span><span>[address]</span></div></div><div className="footer-cols">{cols.map(([title,...items]) => <div key={title}><strong>{title}</strong>{items.map(x => <a href="#" key={x}>{x}</a>)}</div>)}</div></div><div className="footer-bottom"><p>MMRA is a research and study aid and does not provide legal advice.</p><span>© [Year] MMRA</span></div></div></footer>;
+  return <footer id="footer"><div className="container"><div className="footer-top"><div className="footer-brand"><a className="brand" href="#"><span className="brand-mark"><img src={withBase("/mmra-logo.png")} alt="" /></span><span>MMRA</span></a><p>Ghana&apos;s law, courts, judges and study path, in one protected workspace.</p><div className="contact"><span>[email]</span><span>[phone]</span><span>[address]</span></div></div><div className="footer-cols">{cols.map(([title,...items]) => <div key={title}><strong>{title}</strong>{items.map(x => <a href="#" key={x}>{x}</a>)}</div>)}</div></div><div className="footer-bottom"><p>MMRA is a research and study aid and does not provide legal advice.</p><span>© [Year] MMRA</span></div></div></footer>;
 }
 
 export default function App() {
